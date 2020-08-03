@@ -1,12 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 import { MonthItem } from './components/MonthItem';
-import './App.css';
+import styles from './App.module.scss';
 import List from '@material-ui/core/List';
 
 
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super()
     this.state = {
       months: moment.months(),
@@ -27,13 +27,13 @@ class App extends React.Component {
   componentDidMount() {
     this.getUsers()
   }
-  render(){
+  render() {
     return (
-      <div className="App">
+      <div className={styles.container}>
         <List>
           {this.state.months.map(month => {
             const users = this.state.users && this.state.users.filter(user => moment(user.dob).format('MMMM') === month)
-            return <MonthItem key={month} name={month} users={users}/>
+            return <MonthItem key={month} name={month} users={users} />
           })}
         </List>
       </div>

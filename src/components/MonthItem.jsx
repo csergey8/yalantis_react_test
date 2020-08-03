@@ -6,12 +6,12 @@ import List from '@material-ui/core/List';
 import moment from 'moment';
 
 
-const MonthItem = ({name, users}) => {
+const MonthItem = ({ name, users }) => {
     const [open, setOpen] = React.useState(false)
 
     let color;
 
-    if(users){
+    if (users) {
         switch (true) {
             case (users.length <= 2):
                 color = '9e9e9e'
@@ -30,22 +30,22 @@ const MonthItem = ({name, users}) => {
 
     return (
         <React.Fragment>
-            <ListItem 
+            <ListItem
                 onMouseEnter={() => setOpen(true)}
-                onMouseLeave={() => setOpen(false)} 
-                button 
+                onMouseLeave={() => setOpen(false)}
+                button
                 style={{
-                backgroundColor: color
-            }}>
-                <ListItemText primary={name}/>
+                    backgroundColor: color
+                }}>
+                <ListItemText primary={name} />
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                {users && users.map(user => (
-                    <ListItem button>
-                    <ListItemText primary={`${user.firstName} ${user.lastName} - ${moment(user.dob).format('DD, MMM, YYYY')}`} />
-                    </ListItem>
-                ))}
+                    {users && users.map(user => (
+                        <ListItem button key={user.id}>
+                            <ListItemText primary={`${user.firstName} ${user.lastName} - ${moment(user.dob).format('DD, MMM, YYYY')}`} />
+                        </ListItem>
+                    ))}
                 </List>
             </Collapse>
         </React.Fragment>
